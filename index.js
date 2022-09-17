@@ -6,6 +6,20 @@ const endHTML = require("./src/endHTML");
 
 function addTeam() {
     inquirer.prompt(questions)
+    .then(function({name, role, id, email}) {
+        let roleStatus = "";
+        if (role === "Manager") {
+            roleStatus = "office phone number";
+        } else if (role === "Engineer") {
+            roleStatus = "GitHub username";
+        } else {
+            roleStatus = "school name";
+        }
+        inquirer.prompt([{
+            message: `Enter team member's ${roleStatus}`,
+            name: "roleStatus"
+        }])
+    })
 }
 
 function beginHTML(){

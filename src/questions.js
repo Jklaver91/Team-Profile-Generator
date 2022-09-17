@@ -41,7 +41,6 @@ const questions =
             return false;
         }
     }
-}
-]
-
+}]
+    
 module.exports = questions
