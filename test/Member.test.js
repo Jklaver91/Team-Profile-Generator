@@ -24,14 +24,14 @@ describe("Member", () => {
     it("should set id from constructor", () => {
         const id = 123;
     //Act    
-        const memId = new Member("test", id);
+        const memId = new Member("TEST", id);
     //Assert
         expect(memId.id).toBe(id);
     });
     
     //Arrange
     it("should set email from constructor", () => {
-        const email = "test@test.com";
+        const email = "email@mail.com";
     //Act    
         const memEmail = new Member("TEST", 123, email);
     //Assert
