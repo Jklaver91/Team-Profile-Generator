@@ -1,5 +1,7 @@
 const endHTML =
-`</body>
+
+`</div>
+</body>
 </html>`
 
 module.exports = endHTML

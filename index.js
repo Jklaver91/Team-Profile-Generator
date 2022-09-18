@@ -4,6 +4,9 @@ const questions = require("./src/questions");
 const startHTML = require("./src/startHTML");
 const endHTML = require("./src/endHTML");
 const member = [];
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 
 function addTeam() {
     inquirer.prompt(questions)
@@ -29,9 +32,9 @@ function addTeam() {
                     "yes",
                     "no"
                 ]
-            }
-            ])
+            }])
             .then(function({roleStatus, moreMembers}) {
+                console.log(role);
                 let newMember;
                 if (role === "Manager") {
                     newMember = new Manager(name, id, email, roleStatus);
@@ -47,7 +50,7 @@ function addTeam() {
                     if (moreMembers === "yes") {
                         addTeam();
                     } else {
-                        endHTML();
+                        finishHTML();
                     }
                 });
         })
@@ -71,7 +74,58 @@ function finishHTML() {
     });
 };
 
+function genHtml(member){
+    return new Promise(function(resolve, reject) {
+        const name = member.getName();
+        const role = member.getRole();
+        const id = member.getId();
+        const email = member.getEmail();
+        let data = "";
+        if (role === "Manager") {
+            const officePhone = member.getPhone();
+            data = 
+            `<div class="card col-6 shadow">
+                <div class="card-header bg-primary text-white">Manager: ${name}</div>
+                <div class="card-body">
+                <p>ID: ${id}</p>
+                <p>Email: ${email}</p>
+                <p>Office Phone Number: ${officePhone}</p>
+                </div>
+            </div>`;
+        } 
+        else if (role === "Engineer") {
+            const github = member.getGithub();
+            data = 
+            `<div class="card col-6 shadow">
+                <div class="card-header bg-primary text-white">Engineer: ${name}</div>
+                <div class="card-body">
+                <p>ID: ${id}</p>
+                <p>Email: ${email}</p>
+                <p>Github: ${github}</p>
+                </div>
+            </div>`; 
+    
+        } 
+        else {
+            const university = member.getUniversity();
+            data =  
+            `<div class="card col-6 shadow">
+                <div class="card-header bg-primary text-white">Intern: ${name}</div>
+                <div class="card-body">
+                <p>ID: ${id}</p>
+                <p>Email: ${email}</p>
+                <p>University: ${university}</p>
+                </div>
+            </div>`
+        }
+        fs.appendFile("./dist/index.html", data, function (err) {
+            if (err) {
+                return reject(err);
+            };
+            return resolve();
+        });
+    });
+}
 
-addTeam();
 beginHTML();
-finishHTML();
+addTeam();

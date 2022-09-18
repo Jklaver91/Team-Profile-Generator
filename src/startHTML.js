@@ -12,6 +12,7 @@ const startHTML = `
 <nav class="text-center bg-primary p-5 mb-3">
   <span class="mb-0 h1 text-white">Meet the Team!</span>
 </nav>
+<div class="container">
 `
 
 module.exports = startHTML
