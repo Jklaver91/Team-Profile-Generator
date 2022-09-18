@@ -3,6 +3,7 @@ const fs = require("fs");
 const questions = require("./src/questions");
 const startHTML = require("./src/startHTML");
 const endHTML = require("./src/endHTML");
+const member = [];
 
 function addTeam() {
     inquirer.prompt(questions)
@@ -30,7 +31,28 @@ function addTeam() {
                 ]
             }
             ])
+            .then(function({roleStatus, moreMembers}) {
+                let newMember;
+                if (role === "Manager") {
+                    newMember = new Manager(name, id, email, roleStatus);
+                } else if (role === "Engineer") {
+                    newMember = new Engineer(name, id, email, roleStatus);
+                } else {
+                    newMember = new Intern(name, id, email, roleStatus);
+                }
+                member.push(newMember);
+                console.log(newMember);
+                genHtml(newMember)
+                .then(function() {
+                    if (moreMembers === "yes") {
+                        addTeam();
+                    } else {
+                        endHTML();
+                    }
+                });
         })
+            
+        });
 }
 
 function beginHTML() {
@@ -48,6 +70,7 @@ function finishHTML() {
         };
     });
 };
+
 
 addTeam();
 beginHTML();
