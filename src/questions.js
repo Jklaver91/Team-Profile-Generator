@@ -14,8 +14,8 @@ const questions =
 },
 {
     name: "role",
-    type: "list",
-    message: "Please select the team member's role,",
+    type: "rawlist",
+    message: "Please select the team member's role.",
     choices: ["Manager", "Engineer", "Intern"]
 },
 {
