@@ -13,12 +13,23 @@ function addTeam() {
         } else if (role === "Engineer") {
             roleStatus = "GitHub username";
         } else {
-            roleStatus = "school name";
+            roleStatus = "university name";
         }
         inquirer.prompt([{
-            message: `Enter team member's ${roleStatus}`,
-            name: "roleStatus"
-        }])
+            name: "roleStatus",
+            message: `Enter team member's ${roleStatus}`
+        },
+        
+        {
+            name: "moreMembers",
+            type: "list",
+            message: "Would you like to add additional team members?",
+            choices: [
+                "yes",
+                "no"
+            ]
+        }
+    ])
     })
 }
 
