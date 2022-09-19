@@ -80,24 +80,24 @@ function genHtml(member){
         const role = member.getRole();
         const id = member.getId();
         const email = member.getEmail();
-        let data = "";
+        let html = "";
         if (role === "Manager") {
-            const officePhone = member.getPhone();
-            data = 
+            const phone = member.getPhone();
+            html = 
             `<div class="p-0 mx-3">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">Manager: ${name}</div>
                 <div class="card-body">
                 <p>ID: ${id}</p>
                 <p>Email: ${email}</p>
-                <p>Office Phone Number: ${officePhone}</p>
+                <p>Office Phone Number: ${phone}</p>
                 </div>
             </div>
             </div>`;
         } 
         else if (role === "Engineer") {
             const github = member.getGithub();
-            data = 
+            html = 
             `<div class="p-0 mx-3">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">Engineer: ${name}</div>
@@ -112,7 +112,7 @@ function genHtml(member){
         } 
         else {
             const university = member.getUniversity();
-            data =  
+            html =  
             `<div class="p-0 mx-3">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">Intern: ${name}</div>
@@ -124,7 +124,7 @@ function genHtml(member){
             </div>
             </div>`
         }
-        fs.appendFile("./dist/index.html", data, function (err) {
+        fs.appendFile("./dist/index.html", html, function (err) {
             if (err) {
                 return reject(err);
             };
