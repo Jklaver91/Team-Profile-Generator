@@ -1,3 +1,4 @@
+//The generic questions common to all roles.
 const questions =
 [
     {

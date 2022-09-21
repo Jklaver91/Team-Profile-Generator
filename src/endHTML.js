@@ -1,3 +1,4 @@
+//closes out our HTML document
 const endHTML =
 
 `</div>

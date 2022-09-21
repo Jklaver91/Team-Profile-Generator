@@ -1,3 +1,4 @@
+//the beginning of our HTML document.
 const startHTML = `
 <!DOCTYPE html>
 <html lang="en">
