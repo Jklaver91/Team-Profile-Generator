@@ -21,7 +21,7 @@ This was accomplished by using lessons from the last two modules as well as clas
 
 ## Visuals
 
-![Team Generator Video](./video/Team-Profile-Generator.gif)
+![Team Generator Video](./video/Team-Profile-Generator-Gif.gif)
 
 ## Authors and Acknowledgments
 
